@@ -1,9 +1,19 @@
-const { router, readJson } = require('./utils');
+const { router } = require("./utils");
 
-router.get('/cards', (req, res) => {
-  readJson('cards.json')
-    .then((cards) => {
-      res.send(cards);
-    })
-    .catch(() => res.status(500).send({ message: 'An error has occurred on the server' }));
-});
+const {
+  getCards,
+  deleteCard,
+  createCard,
+  likeCard,
+  unlikeCard,
+} = require("../controllers/cards.js");
+
+router.get("/cards", getCards);
+
+router.delete("/cards/:id", deleteCard);
+
+router.post("/cards", createCard);
+
+router.put("/cards/:cardId/likes", likeCard);
+
+router.delete("/cards/:cardId/likes", unlikeCard);

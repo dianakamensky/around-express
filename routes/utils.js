@@ -1,10 +1,3 @@
-const router = require('express').Router();
-const fsPromises = require('fs').promises;
-const path = require('path');
+const router = require("express").Router();
 
-module.exports = {
-  router,
-  readJson: (jsonFile) => fsPromises
-    .readFile(path.join('data', jsonFile))
-    .then((data) => JSON.parse(data)),
-};
+module.exports = { router };
