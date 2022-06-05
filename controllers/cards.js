@@ -1,6 +1,5 @@
-const Card = require("../models/card");
-const User = require("../models/user");
-const { checkError } = require("./utils");
+const Card = require('../models/card');
+const { checkError } = require('./utils');
 
 function getCards(req, res) {
   Card.find({})
@@ -26,7 +25,7 @@ function likeCard(req, res) {
   Card.findByIdAndUpdate(
     req.params.cardId,
     { $addToSet: { likes: req.user._id } },
-    { new: true }
+    { new: true },
   )
     .orFail()
     .then((card) => res.send({ data: card }))
@@ -37,11 +36,17 @@ function unlikeCard(req, res) {
   Card.findByIdAndUpdate(
     req.params.cardId,
     { $pull: { likes: req.user._id } },
-    { new: true }
+    { new: true },
   )
     .orFail()
     .then((card) => res.send({ data: card }))
     .catch((err) => checkError(err, res));
 }
 
-module.exports = { getCards, deleteCard, createCard, likeCard, unlikeCard };
+module.exports = {
+  getCards,
+  deleteCard,
+  createCard,
+  likeCard,
+  unlikeCard,
+};

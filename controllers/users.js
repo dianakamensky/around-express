@@ -1,5 +1,5 @@
-const User = require("../models/user");
-const { checkError } = require("./utils");
+const User = require('../models/user');
+const { checkError } = require('./utils');
 
 function getUsers(req, res) {
   User.find({})
@@ -27,7 +27,7 @@ function updateProfile(req, res) {
   User.findByIdAndUpdate(
     req.user._id,
     { name, about },
-    { new: true, runValidators: true }
+    { new: true, runValidators: true },
   )
     .orFail()
     .then((user) => res.send({ data: user }))
@@ -39,11 +39,13 @@ function updateAvatar(req, res) {
   User.findByIdAndUpdate(
     req.user._id,
     { avatar },
-    { new: true, runValidators: true }
+    { new: true, runValidators: true },
   )
     .orFail()
     .then((user) => res.send({ data: user }))
     .catch((err) => checkError(err, res));
 }
 
-module.exports = { getUsers, getUser, createUser, updateAvatar, updateProfile };
+module.exports = {
+  getUsers, getUser, createUser, updateAvatar, updateProfile,
+};

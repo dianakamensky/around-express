@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const linkregex = /https?:\/\/(www\.)?\S+/;
 
@@ -22,9 +22,9 @@ const userSchema = new mongoose.Schema({
       validator(v) {
         return v.match(linkregex);
       },
-      message: "Please enter a valid url",
+      message: 'Please enter a valid url',
     },
   },
 });
 
-module.exports = mongoose.model("user", userSchema);
+module.exports = mongoose.model('user', userSchema);
